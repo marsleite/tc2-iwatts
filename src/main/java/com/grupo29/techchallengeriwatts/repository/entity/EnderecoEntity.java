@@ -7,6 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -37,7 +40,10 @@ public class EnderecoEntity {
   private String cep;
   private String pais;
   private String bairro;
-  @OneToMany(mappedBy = "endereco", cascade = CascadeType.ALL)
+  @ManyToMany
+  @JoinTable(name = "pessoa_endereco",
+          joinColumns = @JoinColumn(name = "endereco_id"),
+          inverseJoinColumns = @JoinColumn(name = "pessoa_id"))
   private List<PessoaEntity> pessoas;
   @OneToMany(mappedBy = "endereco", cascade = CascadeType.ALL)
   private List<EletrodomesticoEntity> eletrodomesticos;

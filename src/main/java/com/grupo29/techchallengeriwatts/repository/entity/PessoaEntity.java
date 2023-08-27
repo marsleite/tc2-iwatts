@@ -42,10 +42,7 @@ public class PessoaEntity {
   @JoinColumn(name = "endereco_id")
   private EnderecoEntity endereco;
 
-  @ManyToMany
-  @JoinTable(name = "pessoa_eletrodomestico",
-          joinColumns = @JoinColumn(name = "pessoa_id"),
-          inverseJoinColumns = @JoinColumn(name = "eletrodomestico_id"))
+  @ManyToMany(mappedBy = "pessoas")
   private List<EletrodomesticoEntity> eletrodomesticos;
 
   public Pessoa toDomain() {
