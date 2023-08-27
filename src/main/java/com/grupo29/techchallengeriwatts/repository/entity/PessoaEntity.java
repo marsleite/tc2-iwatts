@@ -38,9 +38,11 @@ public class PessoaEntity {
   private String parentesco;
   private String sexo;
   private LocalDate dataNascimento;
-  @ManyToOne
-  @JoinColumn(name = "endereco_id")
-  private EnderecoEntity endereco;
+  @ManyToMany
+  @JoinTable(name = "pessoa_endereco",
+          joinColumns = @JoinColumn(name = "pessoa_id"),
+          inverseJoinColumns = @JoinColumn(name = "endereco_id"))
+  private List<EnderecoEntity> enderecos;
 
   @ManyToMany
   @JoinTable(name = "pessoa_eletrodomestico",
