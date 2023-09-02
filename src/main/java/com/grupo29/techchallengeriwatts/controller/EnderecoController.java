@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -37,6 +38,51 @@ public class EnderecoController {
 
         Endereco endereco = enderecoRepository.createAddress(enderecoDTO.toEndereco(), enderecoDTO.getPessoas());
         return ResponseEntity.status(HttpStatus.CREATED).body(endereco.toResponseDTO());
+    }
+
+    @GetMapping("/findEnderecosByPessoa/{pessoaId}")
+    public ResponseEntity findEnderecosByPessoa(@PathVariable Long pessoaId) {
+        if (pessoaId == null) {
+            return ResponseEntity.badRequest().body("PessoaId não pode ser nulo");
+        }
+        List<Endereco> enderecos = enderecoRepository.findEnderecosByPessoa(pessoaId);
+        return ResponseEntity.ok(enderecos);
+    }
+
+    @GetMapping("/findEnderecoEntitiesByBairro/{bairro}")
+    public ResponseEntity findEnderecoEntitiesByBairro(@PathVariable String bairro) {
+        if (bairro == null) {
+            return ResponseEntity.badRequest().body("Bairro não pode ser nulo");
+        }
+        List<Endereco> enderecos = enderecoRepository.findEnderecoEntitiesByBairro(bairro);
+        return ResponseEntity.ok(enderecos);
+    }
+
+    @GetMapping("/findEnderecoEntitiesByCidade/{cidade}")
+    public ResponseEntity findEnderecoEntitiesByCidade(@PathVariable String cidade) {
+        if (cidade == null) {
+            return ResponseEntity.badRequest().body("Cidade não pode ser nulo");
+        }
+        List<Endereco> enderecos = enderecoRepository.findEnderecoEntitiesByCidade(cidade);
+        return ResponseEntity.ok(enderecos);
+    }
+
+    @GetMapping("/findEnderecoEntitiesByEstado/{estado}")
+    public ResponseEntity findEnderecoEntitiesByEstado(@PathVariable String estado) {
+        if (estado == null) {
+            return ResponseEntity.badRequest().body("Estado não pode ser nulo");
+        }
+        List<Endereco> enderecos = enderecoRepository.findEnderecoEntitiesByEstado(estado);
+        return ResponseEntity.ok(enderecos);
+    }
+
+    @GetMapping("/findEnderecoEntitiesByRua/{rua}")
+    public ResponseEntity findEnderecoEntitiesByRua(@PathVariable String rua) {
+        if (rua == null) {
+            return ResponseEntity.badRequest().body("Rua não pode ser nulo");
+        }
+        List<Endereco> enderecos = enderecoRepository.findEnderecoEntitiesByRua(rua);
+        return ResponseEntity.ok(enderecos);
     }
 
     private <T> Map<Path, String> validar(T dto) {

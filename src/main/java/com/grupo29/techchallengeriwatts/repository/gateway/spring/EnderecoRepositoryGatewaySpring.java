@@ -12,4 +12,12 @@ public interface EnderecoRepositoryGatewaySpring extends JpaRepository<EnderecoE
   @Query("SELECT e FROM EnderecoEntity e JOIN e.pessoas p WHERE p.id = :pessoaId")
   List<EnderecoEntity> findEnderecosByPessoaId(@Param("pessoaId") Long pessoaId);
 
+  List<EnderecoEntity> findEnderecoEntitiesByBairro(String bairro);
+
+  List<EnderecoEntity> findEnderecoEntitiesByRua(String rua);
+
+  List<EnderecoEntity> findEnderecoEntitiesByCidade(String cidade);
+
+  List<EnderecoEntity> findEnderecoEntitiesByEstado(String estado);
+
 }
