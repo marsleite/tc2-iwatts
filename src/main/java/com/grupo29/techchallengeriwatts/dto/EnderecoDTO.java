@@ -2,9 +2,12 @@ package com.grupo29.techchallengeriwatts.dto;
 
 
 import com.grupo29.techchallengeriwatts.domain.Endereco;
+import com.grupo29.techchallengeriwatts.domain.Pessoa;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,6 +33,7 @@ public class EnderecoDTO {
     private String cep;
     @NotBlank(message = "País não pode ficar em branco")
     private String pais;
+    private List<Pessoa> pessoas;
 
     public Endereco toEndereco() {
         return Endereco.builder()
@@ -40,6 +44,7 @@ public class EnderecoDTO {
                 .estado(estado)
                 .cep(cep)
                 .pais(pais)
+                .pessoas(pessoas)
                 .build();
     }
 }

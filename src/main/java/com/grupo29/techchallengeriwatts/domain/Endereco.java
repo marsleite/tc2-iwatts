@@ -20,8 +20,7 @@ public class Endereco {
     private String cep;
     private String pais;
     private String bairro;
-    @EqualsAndHashCode.Exclude
-    List<Pessoa> pessoas;
+    private List<Pessoa> pessoas;
     @EqualsAndHashCode.Exclude
     List<Eletrodomestico> eletrodomesticos;
 

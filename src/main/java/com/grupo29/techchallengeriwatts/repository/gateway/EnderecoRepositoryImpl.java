@@ -1,7 +1,9 @@
 package com.grupo29.techchallengeriwatts.repository.gateway;
 
 import com.grupo29.techchallengeriwatts.domain.Endereco;
+import com.grupo29.techchallengeriwatts.domain.Pessoa;
 import com.grupo29.techchallengeriwatts.repository.entity.EnderecoEntity;
+import com.grupo29.techchallengeriwatts.repository.entity.PessoaEntity;
 import com.grupo29.techchallengeriwatts.repository.gateway.spring.EnderecoRepositoryGatewaySpring;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,7 +21,12 @@ public class EnderecoRepositoryImpl implements EnderecoRepository {
     }
 
     @Override
-    public Endereco createAddress(Endereco endereco) {
+    public Endereco createAddress(Endereco endereco, List<Pessoa> pessoas) {
+        List<PessoaEntity> pessoasEntities = pessoas.stream()
+                .map(pessoa -> PessoaEntity.builder()
+                        .id(pessoa.getId())
+                        .build())
+                .toList();
         return enderecoRepositoryGatewaySpring.save(
                 EnderecoEntity.builder()
                         .rua(endereco.getRua())
@@ -29,6 +36,7 @@ public class EnderecoRepositoryImpl implements EnderecoRepository {
                         .estado(endereco.getEstado())
                         .pais(endereco.getPais())
                         .bairro(endereco.getBairro())
+                        .pessoas(pessoasEntities)
                         .build()
         ).toDomain();
     }

@@ -2,6 +2,7 @@ package com.grupo29.techchallengeriwatts.controller;
 
 import com.grupo29.techchallengeriwatts.domain.Endereco;
 import com.grupo29.techchallengeriwatts.dto.EnderecoDTO;
+import com.grupo29.techchallengeriwatts.repository.entity.PessoaEntity;
 import com.grupo29.techchallengeriwatts.repository.gateway.EnderecoRepository;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Path;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -33,7 +35,7 @@ public class EnderecoController {
             return ResponseEntity.badRequest().body(violations);
         }
 
-        Endereco endereco = enderecoRepository.createAddress(enderecoDTO.toEndereco());
+        Endereco endereco = enderecoRepository.createAddress(enderecoDTO.toEndereco(), enderecoDTO.getPessoas());
         return ResponseEntity.status(HttpStatus.CREATED).body(endereco.toResponseDTO());
     }
 
