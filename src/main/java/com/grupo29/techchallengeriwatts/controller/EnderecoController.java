@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -37,6 +38,15 @@ public class EnderecoController {
 
         Endereco endereco = enderecoRepository.createAddress(enderecoDTO.toEndereco(), enderecoDTO.getPessoas());
         return ResponseEntity.status(HttpStatus.CREATED).body(endereco.toResponseDTO());
+    }
+
+    @GetMapping("/findEnderecosByPessoa/{pessoaId}")
+    public ResponseEntity findEnderecosByPessoa(@PathVariable Long pessoaId) {
+        if (pessoaId == null) {
+            return ResponseEntity.badRequest().body("PessoaId não pode ser nulo");
+        }
+        List<Endereco> enderecos = enderecoRepository.findEnderecosByPessoa(pessoaId);
+        return ResponseEntity.ok(enderecos);
     }
 
     private <T> Map<Path, String> validar(T dto) {
