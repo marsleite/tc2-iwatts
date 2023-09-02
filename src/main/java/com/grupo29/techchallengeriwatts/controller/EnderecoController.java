@@ -49,6 +49,42 @@ public class EnderecoController {
         return ResponseEntity.ok(enderecos);
     }
 
+    @GetMapping("/findEnderecoEntitiesByBairro/{bairro}")
+    public ResponseEntity findEnderecoEntitiesByBairro(@PathVariable String bairro) {
+        if (bairro == null) {
+            return ResponseEntity.badRequest().body("Bairro não pode ser nulo");
+        }
+        List<Endereco> enderecos = enderecoRepository.findEnderecoEntitiesByBairro(bairro);
+        return ResponseEntity.ok(enderecos);
+    }
+
+    @GetMapping("/findEnderecoEntitiesByCidade/{cidade}")
+    public ResponseEntity findEnderecoEntitiesByCidade(@PathVariable String cidade) {
+        if (cidade == null) {
+            return ResponseEntity.badRequest().body("Cidade não pode ser nulo");
+        }
+        List<Endereco> enderecos = enderecoRepository.findEnderecoEntitiesByCidade(cidade);
+        return ResponseEntity.ok(enderecos);
+    }
+
+    @GetMapping("/findEnderecoEntitiesByEstado/{estado}")
+    public ResponseEntity findEnderecoEntitiesByEstado(@PathVariable String estado) {
+        if (estado == null) {
+            return ResponseEntity.badRequest().body("Estado não pode ser nulo");
+        }
+        List<Endereco> enderecos = enderecoRepository.findEnderecoEntitiesByEstado(estado);
+        return ResponseEntity.ok(enderecos);
+    }
+
+    @GetMapping("/findEnderecoEntitiesByRua/{rua}")
+    public ResponseEntity findEnderecoEntitiesByRua(@PathVariable String rua) {
+        if (rua == null) {
+            return ResponseEntity.badRequest().body("Rua não pode ser nulo");
+        }
+        List<Endereco> enderecos = enderecoRepository.findEnderecoEntitiesByRua(rua);
+        return ResponseEntity.ok(enderecos);
+    }
+
     private <T> Map<Path, String> validar(T dto) {
         Set<ConstraintViolation<T>> violations = validator.validate(dto);
         return violations.stream()

@@ -51,4 +51,40 @@ public class EnderecoRepositoryImpl implements EnderecoRepository {
                 .map(EnderecoEntity::toDomain)
                 .toList();
     }
+
+    @Override
+    public List<Endereco> findEnderecoEntitiesByBairro(String bairro) {
+        return enderecoRepositoryGatewaySpring
+                .findEnderecoEntitiesByBairro(bairro)
+                .stream()
+                .map(EnderecoEntity::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<Endereco> findEnderecoEntitiesByRua(String rua) {
+        return enderecoRepositoryGatewaySpring
+                .findEnderecoEntitiesByRua(rua)
+                .stream()
+                .map(EnderecoEntity::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<Endereco> findEnderecoEntitiesByCidade(String cidade) {
+        return enderecoRepositoryGatewaySpring
+                .findEnderecoEntitiesByCidade(cidade)
+                .stream()
+                .map(EnderecoEntity::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<Endereco> findEnderecoEntitiesByEstado(String estado) {
+        return enderecoRepositoryGatewaySpring
+                .findEnderecoEntitiesByEstado(estado)
+                .stream()
+                .map(EnderecoEntity::toDomain)
+                .toList();
+    }
 }
