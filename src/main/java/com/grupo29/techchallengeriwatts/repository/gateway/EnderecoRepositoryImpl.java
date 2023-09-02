@@ -6,6 +6,8 @@ import com.grupo29.techchallengeriwatts.repository.gateway.spring.EnderecoReposi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class EnderecoRepositoryImpl implements EnderecoRepository {
 
@@ -29,5 +31,14 @@ public class EnderecoRepositoryImpl implements EnderecoRepository {
                         .bairro(endereco.getBairro())
                         .build()
         ).toDomain();
+    }
+
+    @Override
+    public List<Endereco> findEnderecosByPessoa(Long pessoaId) {
+        return enderecoRepositoryGatewaySpring
+                .findEnderecosByPessoaId(pessoaId)
+                .stream()
+                .map(EnderecoEntity::toDomain)
+                .toList();
     }
 }
