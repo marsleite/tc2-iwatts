@@ -25,6 +25,8 @@ public class EnderecoRepositoryImpl implements EnderecoRepository {
         List<PessoaEntity> pessoasEntities = pessoas.stream()
                 .map(pessoa -> PessoaEntity.builder()
                         .id(pessoa.getId())
+                        .nome(pessoa.getNome())
+                        .email(pessoa.getEmail())
                         .build())
                 .toList();
         return enderecoRepositoryGatewaySpring.save(
