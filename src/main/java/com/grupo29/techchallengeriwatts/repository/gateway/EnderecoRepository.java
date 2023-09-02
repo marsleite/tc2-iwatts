@@ -17,5 +17,7 @@ public interface EnderecoRepository {
 
     List<Endereco> findEnderecoEntitiesByEstado(String estado);
 
+    void deleteEndereco(Long id);
+
 
 }

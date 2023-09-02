@@ -85,6 +85,15 @@ public class EnderecoController {
         return ResponseEntity.ok(enderecos);
     }
 
+    @DeleteMapping("/deleteEndereco/{id}")
+    public ResponseEntity deleteEndereco(@PathVariable Long id) {
+        if (id == null) {
+            return ResponseEntity.badRequest().body("Id não pode ser nulo");
+        }
+        enderecoRepository.deleteEndereco(id);
+        return ResponseEntity.ok().build();
+    }
+
     private <T> Map<Path, String> validar(T dto) {
         Set<ConstraintViolation<T>> violations = validator.validate(dto);
         return violations.stream()
