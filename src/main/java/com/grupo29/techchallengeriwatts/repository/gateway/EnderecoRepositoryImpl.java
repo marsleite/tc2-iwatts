@@ -87,4 +87,9 @@ public class EnderecoRepositoryImpl implements EnderecoRepository {
                 .map(EnderecoEntity::toDomain)
                 .toList();
     }
+
+    @Override
+    public void deleteEndereco(Long id) {
+        enderecoRepositoryGatewaySpring.deleteById(id);
+    }
 }
