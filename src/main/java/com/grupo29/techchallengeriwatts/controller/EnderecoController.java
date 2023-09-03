@@ -94,6 +94,19 @@ public class EnderecoController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/updateEndereco/{id}")
+    public ResponseEntity updateEndereco(@PathVariable Long id, @RequestBody EnderecoDTO enderecoDTO) {
+        if (id == null) {
+            return ResponseEntity.badRequest().body("Id não pode ser nulo");
+        }
+        Map<Path, String> violations = validar(enderecoDTO);
+        if (!violations.isEmpty()) {
+            return ResponseEntity.badRequest().body(violations);
+        }
+        Endereco endereco = enderecoRepository.updateEndereco(enderecoDTO.toEndereco());
+        return ResponseEntity.ok(endereco.toResponseDTO());
+    }
+
     private <T> Map<Path, String> validar(T dto) {
         Set<ConstraintViolation<T>> violations = validator.validate(dto);
         return violations.stream()
