@@ -19,6 +19,9 @@ Atualmente, muitos consumidores de produtos eletroeletrônicos acabam gastando m
 - Validar as informações para garantir que estejam no formato correto e sejam válidas.
 - Retornar uma mensagem de erro em caso de problemas.
 - Confirmar o sucesso do cadastro retornando uma resposta positiva ao usuário.
+- Consultar os endereços cadastrados.
+- Atualizar os endereços cadastrados.
+- Excluir os endereços cadastrados.
 
 ### Gestão de pessoas
 
@@ -26,12 +29,18 @@ Atualmente, muitos consumidores de produtos eletroeletrônicos acabam gastando m
 - Receber as solicitações em formato HTTP POST.
 - Validar as informações recebidas.
 - Retornar erro e uma mensagem em caso de problemas.
+- Consultar as pessoas cadastradas.
+- Atualizar as pessoas cadastradas.
+- Excluir as pessoas cadastradas.
 
 ### Gestão de eletrodomésticos
 
 - Receber informações dos eletrodomésticos, como nome, modelo e potência.
 - Receber as solicitações em formato HTTP POST.
 - Validar as informações recebidas.
+- Consultar os eletrodomésticos cadastrados.
+- Atualizar os eletrodomésticos cadastrados.
+- Excluir os eletrodomésticos cadastrados.
 
 ## Use Cases
 
@@ -80,6 +89,105 @@ Status Code: 201 created`
 }
 ```
 
+### Consulta de endereço
+
+`GET /iwatts/api/v1/endereco/findEnderecosByPessoa/{pessoaId}`
+```json
+{
+  "id": 1,
+  "rua": "Rua A",
+  "numero": "10",
+  "cidade": "Sao Paulo",
+  "estado": "SP",
+  "cep": "12565178",
+  "pais": "Brasil",
+  "bairro": "Morumbi"
+}
+```
+
+### Consulta de endereço por bairro
+
+`GET /iwatts/api/v1/endereco/findEnderecosByBairro/{bairro}`
+```json
+{
+  "id": 1,
+  "rua": "Rua A",
+  "numero": "10",
+  "cidade": "Sao Paulo",
+  "estado": "SP",
+  "cep": "12565178",
+  "pais": "Brasil",
+  "bairro": "Morumbi"
+}
+```
+
+### Consulta de endereço por cidade
+
+`GET /iwatts/api/v1/endereco/findEnderecosByCidade/{cidade}`
+```json
+{
+  "id": 1,
+  "rua": "Rua A",
+  "numero": "10",
+  "cidade": "Sao Paulo",
+  "estado": "SP",
+  "cep": "12565178",
+  "pais": "Brasil",
+  "bairro": "Morumbi"
+}
+```
+
+### Consulta de endereço por estado
+
+`GET /iwatts/api/v1/endereco/findEnderecosByEstado/{estado}`
+```json
+{
+  "id": 1,
+  "rua": "Rua A",
+  "numero": "10",
+  "cidade": "Sao Paulo",
+  "estado": "SP",
+  "cep": "12565178",
+  "pais": "Brasil",
+  "bairro": "Morumbi"
+}
+```
+
+### Consulta de endereço por rua
+
+`GET /iwatts/api/v1/endereco/findEnderecosByRua/{rua}`
+```json
+{
+  "id": 1,
+  "rua": "Rua A",
+  "numero": "10",
+  "cidade": "Sao Paulo",
+  "estado": "SP",
+  "cep": "12565178",
+  "pais": "Brasil",
+  "bairro": "Morumbi"
+}
+```
+
+### Atualização de endereço
+
+`PUT /iwatts/api/v1/endereco/updateEndereco/{enderecoId}`
+```json
+{
+  "rua": "Rua A",
+  "numero": "10",
+  "cidade": "Sao Paulo",
+  "estado": "SP",
+  "cep": "12565178",
+  "pais": "Brasil",
+  "bairro": "Morumbi"
+}
+```
+
+### Exclusão de endereço
+
+`DELETE /iwatts/api/v1/endereco/deleteEndereco/{enderecoId}`
+
 ### Cadastro de Eletrodomésticos
 
 `POST /iwatts/api/v1/eletrodomestico/register`
@@ -100,27 +208,25 @@ Status Code: 201 created`
   "potencia": 1500
 }
 ```
-## Conexão ao banco H2
 
-Para conectar-se ao banco de dados H2, siga as etapas abaixo:
+### Usando o docker
 
-1. Acesse a URL `http://localhost:8080/h2-console` em um navegador web.
+Para executar o projeto com o docker, siga as etapas abaixo:
 
-2. Na página de login do H2, verifique se os campos estão preenchidos da seguinte forma:
-    - **JDBC URL**: jdbc:h2:mem:iwattsdb (ou a URL de conexão configurada em seu projeto)
-    - **User Name**: sa
-    - **Password**: (deixe em branco)
-
-3. Clique em "Connect" ou pressione Enter para fazer login.
-
-Após a conexão bem-sucedida, você terá acesso à console do H2, onde poderá executar consultas SQL e interagir com o banco de dados.
+1. Abra o terminal e navegue até a pasta raiz do projeto.
+2. Execute o comando `docker-compose up -d` para iniciar a app e o banco de dados MySQL.
+3. Execute o comando `./gradlew bootRun` para iniciar o projeto.
+4. Acesse a URL `http://localhost:8080/iwatts/api/v1/eletrodomestico/register` em um navegador web para testar a API.
+5. Execute o comando `docker-compose down` para parar o banco de dados H2.
+6. Execute o comando `./gradlew clean` para limpar os arquivos gerados pelo projeto.
 
 ## Tecnologias utilizadas
 
 - Java 17
 - Spring versão 3.1.1
-- H2 Database
+- MySQL DataBase
 - Projeto em gradle
+- Docker
 
 ## Executando a aplicação
 
