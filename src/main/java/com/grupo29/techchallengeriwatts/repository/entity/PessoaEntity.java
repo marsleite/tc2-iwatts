@@ -1,6 +1,8 @@
 package com.grupo29.techchallengeriwatts.repository.entity;
 
 import com.grupo29.techchallengeriwatts.domain.Pessoa;
+import com.grupo29.techchallengeriwatts.dto.PessoaRequestDTO;
+import com.grupo29.techchallengeriwatts.dto.PessoaResponseDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -58,6 +60,23 @@ public class PessoaEntity {
             .parentesco(this.getParentesco())
             .sexo(this.getSexo())
             .dataNascimento(this.getDataNascimento())
+            .build();
+  }
+  public PessoaEntity fromRequestDTO(PessoaRequestDTO pessoa) {
+    return PessoaEntity.builder()
+            .id(this.getId())
+            .nome(this.getNome())
+            .email(this.getEmail())
+            .parentesco(this.getParentesco())
+            .sexo(this.getSexo())
+            .dataNascimento(this.getDataNascimento())
+            .build();
+  }
+
+  public PessoaResponseDTO toResponseDTO() {
+    return PessoaResponseDTO.builder()
+            .email(email)
+            .nome(nome)
             .build();
   }
 

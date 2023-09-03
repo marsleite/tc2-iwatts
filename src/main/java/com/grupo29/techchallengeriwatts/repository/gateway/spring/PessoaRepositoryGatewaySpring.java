@@ -1,5 +1,6 @@
 package com.grupo29.techchallengeriwatts.repository.gateway.spring;
 
+import com.grupo29.techchallengeriwatts.domain.Pessoa;
 import com.grupo29.techchallengeriwatts.repository.entity.PessoaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

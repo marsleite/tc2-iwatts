@@ -3,14 +3,11 @@ package com.grupo29.techchallengeriwatts.dto;
 import com.grupo29.techchallengeriwatts.domain.Pessoa;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 @Getter
 @Setter
