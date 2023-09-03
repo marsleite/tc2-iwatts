@@ -19,5 +19,7 @@ public interface EnderecoRepository {
 
     void deleteEndereco(Long id);
 
+    Endereco updateEndereco(Endereco endereco);
+
 
 }

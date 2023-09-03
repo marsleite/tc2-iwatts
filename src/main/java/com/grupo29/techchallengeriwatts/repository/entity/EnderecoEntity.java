@@ -7,8 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -56,5 +54,16 @@ public class EnderecoEntity {
             .pais(this.getPais())
             .bairro(this.getBairro())
             .build();
+  }
+
+  public EnderecoEntity copy(Endereco endereco) {
+    this.setRua(endereco.getRua());
+    this.setNumero(endereco.getNumero());
+    this.setCidade(endereco.getCidade());
+    this.setEstado(endereco.getEstado());
+    this.setCep(endereco.getCep());
+    this.setPais(endereco.getPais());
+    this.setBairro(endereco.getBairro());
+    return this;
   }
 }

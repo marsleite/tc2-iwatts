@@ -2,6 +2,7 @@ package com.grupo29.techchallengeriwatts.repository.gateway;
 
 import com.grupo29.techchallengeriwatts.domain.Endereco;
 import com.grupo29.techchallengeriwatts.domain.Pessoa;
+import com.grupo29.techchallengeriwatts.exception.RepositoryException;
 import com.grupo29.techchallengeriwatts.repository.entity.EnderecoEntity;
 import com.grupo29.techchallengeriwatts.repository.entity.PessoaEntity;
 import com.grupo29.techchallengeriwatts.repository.gateway.spring.EnderecoRepositoryGatewaySpring;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class EnderecoRepositoryImpl implements EnderecoRepository {
@@ -91,5 +93,13 @@ public class EnderecoRepositoryImpl implements EnderecoRepository {
     @Override
     public void deleteEndereco(Long id) {
         enderecoRepositoryGatewaySpring.deleteById(id);
+    }
+
+    @Override
+    public Endereco updateEndereco(Endereco endereco) {
+        EnderecoEntity existsEndereco = enderecoRepositoryGatewaySpring.findById(endereco.getId())
+                .orElseThrow(() -> new RepositoryException("Endereco not found"));
+
+        return enderecoRepositoryGatewaySpring.save(existsEndereco.copy(endereco)).toDomain();
     }
 }
