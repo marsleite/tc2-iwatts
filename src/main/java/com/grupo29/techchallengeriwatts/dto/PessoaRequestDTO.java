@@ -1,13 +1,12 @@
 package com.grupo29.techchallengeriwatts.dto;
 
 import com.grupo29.techchallengeriwatts.domain.Pessoa;
+import com.grupo29.techchallengeriwatts.utils.FieldUtils;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Map;
 
 @Getter
 @Setter
@@ -15,25 +14,21 @@ import java.util.Map;
 @AllArgsConstructor
 @Builder
 public class PessoaRequestDTO {
-  @NotNull(message = "Nome não pode ser vazio")
-  private String nome;
-  @Email(message = "Formato de email inválido")
-  private String email;
-  private String parentesco;
-  private String sexo;
-  @NotNull(message = "Data de nascimento não pode ser vazio")
-  private String dataNascimento;
+    @NotNull(message = "Nome não pode ser vazio")
+    private String nome;
+    @Email(message = "Formato de email inválido")
+    private String email;
+    private String sexo;
+    @NotNull(message = "Data de nascimento não pode ser vazio")
+    private String dataNascimento;
 
-  public Pessoa toDomain() {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    LocalDate dataNascimentoParsed = LocalDate.parse(this.getDataNascimento(), formatter);
-
-    return Pessoa.builder()
-            .nome(nome)
-            .email(email)
-            .parentesco(parentesco)
-            .sexo(sexo)
-            .dataNascimento(dataNascimentoParsed)
-            .build();
-  }
+    public Pessoa toDomain() {
+        LocalDate dataNascimentoParsed = FieldUtils.convertStringToLocalDate(this.getDataNascimento());
+        return Pessoa.builder()
+                .nome(nome)
+                .email(email)
+                .sexo(sexo)
+                .dataNascimento(dataNascimentoParsed)
+                .build();
+    }
 }
