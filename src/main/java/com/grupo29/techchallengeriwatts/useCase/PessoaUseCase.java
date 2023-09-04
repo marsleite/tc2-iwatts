@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class CadastroPessoaUseCase {
+public class PessoaUseCase {
 
   private final PessoaRepository pessoaRepository;
   private static final String USER_NOT_NULL  = "Campos de usuário obrigatórios estão nulos";
 
-  public CadastroPessoaUseCase(PessoaRepository pessoaRepository) {
+  public PessoaUseCase(PessoaRepository pessoaRepository) {
     this.pessoaRepository = pessoaRepository;
   }
 
