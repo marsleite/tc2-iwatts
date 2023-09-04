@@ -67,6 +67,63 @@ Status Code: 201 created`
 }
 ```
 
+### Consulta de pessoas
+
+`GET /iwatts/api/v1/pessoa/findPessoasByEndereco/{enderecoId}`
+```json
+{
+  "id": 1,
+  "nome": "Fulano",
+  "email": "fulano@test.com"
+}
+```
+
+### Consulta de pessoas por email
+
+`GET /iwatts/api/v1/pessoa/email/{email}`
+```json
+{
+  "id": 1,
+  "nome": "Fulano",
+  "email": "fulano@test.com"
+}
+```
+
+### Consulta de pessoas por nome
+
+`GET /iwatts/api/v1/pessoa/nome/{nome}`
+```json
+{
+  "id": 1,
+  "nome": "Fulano",
+  "email": "fulano@test.com"
+}
+```
+
+### Consulta de pessoas por data de nascimento
+
+`GET /iwatts/api/v1/pessoa/dataNascimento/{dataNascimento}`
+```json
+{
+  "id": 1,
+  "nome": "Fulano",
+  "email": "fulano@test.com"
+}
+```
+### Deletar pessoa
+
+`DELETE /iwatts/api/v1/pessoa/delete/{pessoaId}`
+
+### Atualizar pessoa
+
+`PUT /iwatts/api/v1/pessoa/update/{pessoaId}`
+```json
+{
+  "nome": "Fulano",
+  "email": "fulano@test.com"
+}
+```
+
 ### Cadastro de endereço
 
 `POST /iwatts/api/v1/endereco/register`
