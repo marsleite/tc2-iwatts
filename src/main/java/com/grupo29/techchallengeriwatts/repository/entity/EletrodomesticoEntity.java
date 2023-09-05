@@ -1,6 +1,7 @@
 package com.grupo29.techchallengeriwatts.repository.entity;
 
 import com.grupo29.techchallengeriwatts.domain.Eletrodomestico;
+import com.grupo29.techchallengeriwatts.domain.Endereco;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -46,6 +47,14 @@ public class EletrodomesticoEntity {
             .modelo(this.getModelo())
             .potencia(this.getPotencia())
             .build();
+  }
+
+  public EletrodomesticoEntity copy(Eletrodomestico eletrodomestico) {
+    this.setNome(eletrodomestico.getNome());
+    this.setModelo(eletrodomestico.getModelo());
+    this.setPotencia(eletrodomestico.getPotencia());
+
+    return this;
   }
 
 }
