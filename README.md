@@ -266,6 +266,33 @@ Status Code: 201 created`
 }
 ```
 
+### Consulta de eletrodomésticos
+
+`GET /iwatts/api/v1/eletrodomestico/consultaEletrodomestico/{id}`
+```json
+{
+  "id": 1,
+  "nome": "Geladeira",
+   "modelo": "AB-GELADEIRA",
+  "potencia": 1500
+}
+```
+
+### Atualização de eletrodomésticos
+
+`PUT /iwatts/api/v1/eletrodomestico/updateEletrodomestico/{id}`
+```json
+{
+  "name": "Geladeira",
+  "modelo": "AB-GELADEIRA",
+  "potencia": 1500
+}
+```
+
+### Exclusão de eletrodomésticos
+
+`DELETE /iwatts/api/v1/eletrodomestico/deleteEletrodomestico/{id}`
+
 ### Usando o docker
 
 Para executar o projeto com o docker, siga as etapas abaixo:
